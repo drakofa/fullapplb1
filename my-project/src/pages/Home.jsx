@@ -9,7 +9,7 @@ function Home() {
       {/* Герой секция */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">Добро пожаловать в TechStore</h1>
+          <h1 className="text-5xl font-bold mb-6">Добро пожаловать в topLINK</h1>
           <p className="text-xl mb-8">Лучшие технологии по доступным ценам</p>
           <Link 
             to="/catalog" 
