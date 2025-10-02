@@ -10,7 +10,7 @@ function Header() {
         <div className="flex justify-between items-center">
           {/* Логотип */}
           <Link to="/" className="text-2xl font-bold text-blue-600">
-            TechStore
+            topLINK
           </Link>
 
           {/* Навигация */}

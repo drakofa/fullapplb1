@@ -40,11 +40,12 @@ export const products = [
     description: "Беспроводные наушники с шумоподавлением"
   },
   {
-    id: 6,
-    name: "Apple Watch Series 9",
-    price: 399,
-    category: "wearables",
-    image: "https://c.dns-shop.ru/thumb/st1/fit/320/250/7ee2e910976c6397e757f090c56742dd/28cde7aae3bcbee7a21a66bd5dbde3419955bafef0d8afcc6506c2fd1485040d.jpg",
-    description: "Умные часы для активного образа жизни"
+    id: 7,
+    name: "Surface Laptop 7",
+    price: 2000,
+    category: "laptops",
+    image: "https://m.media-amazon.com/images/I/51up1l6AlnL._AC_UY327_FMwebp_QL65_.jpg",
+    description: "Microsoft Surface Laptop 7 5G for Business Copilot+ PC 13,8 Intel Core Ultra 5 (Series 2) 16GB 256GB PlatinumУмные часы для активного образа жизни"
   }
+  
 ];
