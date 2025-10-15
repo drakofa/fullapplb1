@@ -35,7 +35,7 @@ function Footer() {
             <h4 className="font-semibold mb-4">Контакты</h4>
             <ul className="space-y-2 text-gray-400">
               <li>📞 +7 (666) 666-66-61</li>
-              <li>✉️ info@techstore.ru</li>
+              <li>✉️ info@topLINKstore.ru</li>
               <li>📍 Москва, ул. Примерная, 123</li>
             </ul>
           </div>
