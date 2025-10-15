@@ -7,10 +7,12 @@ import Catalog from './pages/Catalog';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import ChatBot from './components/ChatBot';
 
 function App() {
   return (
     <Router>
+      <div className="App">
       <div className="min-h-screen flex flex-col">
         <Header />
         <Breadcrumbs />
@@ -25,6 +27,8 @@ function App() {
         </main>
         <Footer />
       </div>
+      <ChatBot />
+    </div>
     </Router>
   );
 }
