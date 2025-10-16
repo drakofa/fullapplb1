@@ -7,7 +7,7 @@ function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Герой секция */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
+      <section className="bg-gradient-to-r from-purple-600 to-red-700 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">Добро пожаловать в topLINK</h1>
           <p className="text-xl mb-8">Лучшие технологии по доступным ценам</p>

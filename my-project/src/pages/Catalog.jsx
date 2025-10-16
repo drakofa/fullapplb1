@@ -16,7 +16,7 @@ function Catalog() {
     ? products 
     : products.filter(product => product.category === selectedCategory);
 
-  // Пагинация
+  // Пагинация-----------------------------------------------------------------------------------------------------------------------------//
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -169,22 +169,25 @@ function Catalog() {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {currentProducts.map(product => (
-                <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
+                <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition flex flex-col">
+                  {/* Контейнер для изображения с фиксированной высотой */}
+                  <div className="w-full h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="max-w-full max-h-full object-contain p-2"
+                    />
+                  </div>
+                  <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                    <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                    <p className="text-gray-600 mb-4 line-clamp-2 flex-1">{product.description}</p>
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-2xl font-bold text-blue-600">${product.price}</span>
                       <span className="text-sm text-gray-500 capitalize bg-gray-100 px-2 py-1 rounded">
                         {product.category}
                       </span>
                     </div>
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-2 mt-auto">
                       <Link 
                         to={`/product/${product.id}`}
                         className="flex-1 bg-gray-200 text-gray-700 px-4 py-2 rounded text-center hover:bg-gray-300 transition"

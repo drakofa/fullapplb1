@@ -43,7 +43,7 @@ const ChatBot = () => {
     } else if (lowerMessage.includes('гарантия') || lowerMessage.includes('возврат')) {
       return 'Гарантия на всю технику - 1 год. Возврат в течение 14 дней.';
     } else if (lowerMessage.includes('смартфон') || lowerMessage.includes('телефон')) {
-      return 'У нас есть iPhone, Samsung, Xiaomi и другие смартфоны. Посмотрите в категории "smartphones"!';
+      return 'У нас есть iPhone, Samsung и другие смартфоны. Посмотрите в категории "smartphones"!';
     } else if (lowerMessage.includes('ноутбук') || lowerMessage.includes('laptop')) {
       return 'В категории "laptops" вы найдете MacBook, Dell, Surface и другие ноутбуки.';
     } else {
@@ -117,7 +117,7 @@ const ChatBot = () => {
                 onClick={handleSendMessage}
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
               >
-                Отправить
+                ввод
               </button>
             </div>
           </div>

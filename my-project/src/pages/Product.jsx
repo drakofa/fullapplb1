@@ -8,8 +8,12 @@ function Product() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const product = products.find(p => p.id === parseInt(id));
+
+  // Используем массив images если есть, иначе создаем из одного image
+  const productImages = product?.images || [product?.image].filter(Boolean);
 
   if (!product) {
     return (
@@ -34,18 +38,89 @@ function Product() {
     navigate('/cart');
   };
 
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === productImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? productImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToImage = (index) => {
+    setCurrentImageIndex(index);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="md:flex">
-            {/* Изображение товара */}
+            {/* Карусель изображений */}
             <div className="md:w-1/2 p-8">
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="w-full h-96 object-cover rounded-lg"
-              />
+              <div className="relative">
+                {/* Основное изображение */}
+                <div className="relative bg-gray-100 rounded-lg overflow-hidden">
+                  <div className="w-full h-96 flex items-center justify-center">
+                    <img 
+                      src={productImages[currentImageIndex]} 
+                      alt={`${product.name} - изображение ${currentImageIndex + 1}`}
+                      className="max-w-full max-h-96 object-contain"
+                    />
+                  </div>
+                  
+                  {/* Кнопки навигации (только если больше 1 изображения) */}
+                  {productImages.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-70 transition"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-70 transition"
+                      >
+                        ›
+                      </button>
+                    </>
+                  )}
+                  
+                  {/* Индикатор текущего изображения */}
+                  {productImages.length > 1 && (
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+                      {currentImageIndex + 1} / {productImages.length}
+                    </div>
+                  )}
+                </div>
+
+                {/* Миниатюры (только если больше 1 изображения) */}
+                {productImages.length > 1 && (
+                  <div className="flex space-x-2 mt-4 overflow-x-auto py-2">
+                    {productImages.map((image, index) => (
+                      <button
+                        key={index}
+                        onClick={() => goToImage(index)}
+                        className={`flex-shrink-0 w-20 h-20 border-2 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center ${
+                          currentImageIndex === index 
+                            ? 'border-blue-600' 
+                            : 'border-gray-300'
+                        }`}
+                      >
+                        <img 
+                          src={image} 
+                          alt={`Миниатюра ${index + 1}`}
+                          className="max-w-full max-h-full object-contain p-1"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
             
             {/* Информация о товаре */}
@@ -68,14 +143,14 @@ function Product() {
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+                    className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition"
                   >
                     -
                   </button>
                   <span className="text-xl font-semibold w-12 text-center">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+                    className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition"
                   >
                     +
                   </button>
