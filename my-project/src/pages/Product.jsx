@@ -1,20 +1,30 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
-
+import { useEffect } from 'react';
 function Product() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const location = useLocation(); // Добавлена эта строка
+       useEffect(() => {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth' // плавная прокрутка
+          });
+        }, [location.pathname]);
   const product = products.find(p => p.id === parseInt(id));
 
   // Используем массив images если есть, иначе создаем из одного image
   const productImages = product?.images || [product?.image].filter(Boolean);
 
+
+
+  
   if (!product) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -28,6 +38,9 @@ function Product() {
     );
   }
 
+
+
+  
   const handleAddToCart = () => {
     addToCart(product, quantity);
     alert(`${product.name} (${quantity} шт.) добавлен в корзину!`);

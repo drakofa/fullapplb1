@@ -25,7 +25,7 @@ function Checkout() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Здесь обычно отправка данных на сервер
-    alert('Заказ успешно оформлен! Спасибо за покупку!');
+    // alert('Заказ успешно оформлен! Спасибо за покупку!');
     clearCart();
     navigate('/');
   };

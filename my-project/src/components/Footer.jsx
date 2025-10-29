@@ -24,10 +24,38 @@ function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Категории</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Смартфоны</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Ноутбуки</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Планшеты</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Аксессуары</a></li>
+              <li>
+                <Link 
+                  to="/catalog?category=smartphones" 
+                  className="text-gray-400 hover:text-white transition"
+                >
+                  Смартфоны
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/catalog?category=laptops" 
+                  className="text-gray-400 hover:text-white transition"
+                >
+                  Ноутбуки
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/catalog?category=tablets" 
+                  className="text-gray-400 hover:text-white transition"
+                >
+                  Планшеты
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/catalog?category=accessories" 
+                  className="text-gray-400 hover:text-white transition"
+                >
+                  Аксессуары
+                </Link>
+              </li>
             </ul>
           </div>
           

@@ -12,6 +12,17 @@ function Catalog() {
   const location = useLocation(); // Добавлена эта строка
   const categories = ['all', ...new Set(products.map(product => product.category))];
 
+
+ // Обработка query параметров из URL
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const categoryFromUrl = searchParams.get('category');
+    
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [location.search]);
+
   // Фильтрация по категориям
   const filteredProducts = selectedCategory === 'all' 
     ? products 
@@ -22,14 +33,29 @@ function Catalog() {
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-  // плавная прокрутка страницы верх, при переходе на нее 
+   useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const categoryFromUrl = searchParams.get('category');
+    
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [location.search]);
+
+  // Прокрутка вверх при смене страницы ИЛИ категории
   useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth' // плавная прокрутка
+      behavior: 'smooth'
     });
-  }, [location.pathname]);
+  }, [location.pathname, selectedCategory]); // Добавлен selectedCategory
+
+  // Сброс на первую страницу при смене категории
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory]);
+
 
    const handleAddToCart = (product) => {
     addToCart(product);
