@@ -1,8 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link , useLocation} from 'react-router-dom';
 import { products } from '../data/products';
-
+import { useEffect } from 'react';
 function Home() {
   const featuredProducts = products.slice(0, 3);
+  const location = useLocation(); // Добавлена эта строка
+
+
+   useEffect(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth' // плавная прокрутка
+      });
+    }, [location.pathname]);
+  
+
+  
+
 
   return (
     <div className="min-h-screen bg-gray-50">

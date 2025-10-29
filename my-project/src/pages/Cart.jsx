@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link , useLocation} from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useEffect } from 'react';
 
 function Cart() {
+  const location = useLocation(); 
   const { 
     cart, 
     removeFromCart, 
@@ -10,6 +12,16 @@ function Cart() {
     getTotalPrice, 
     getTotalItems 
   } = useCart();
+
+  useEffect(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth' // плавная прокрутка
+      });
+    }, [location.pathname]);
+  
+  
 
   if (cart.length === 0) {
     return (
@@ -123,12 +135,12 @@ function Cart() {
                 Перейти к оформлению
               </Link>
 
-              <Link 
+              {/* <Link 
                 to="/catalog"
                 className="w-full bg-gray-200 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-300 transition font-semibold text-center block mt-3"
               >
                 Продолжить покупки
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

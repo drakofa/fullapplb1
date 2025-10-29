@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom'; // Добавлен useLocation
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
 
@@ -8,7 +9,7 @@ function Catalog() {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6); // 6 товаров на странице
   const { addToCart } = useCart();
-
+  const location = useLocation(); // Добавлена эта строка
   const categories = ['all', ...new Set(products.map(product => product.category))];
 
   // Фильтрация по категориям
@@ -21,16 +22,20 @@ function Catalog() {
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-
-  // Сброс на первую страницу при смене категории
+  // плавная прокрутка страницы верх, при переходе на нее 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedCategory]);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth' // плавная прокрутка
+    });
+  }, [location.pathname]);
 
-  const handleAddToCart = (product) => {
+   const handleAddToCart = (product) => {
     addToCart(product);
-    alert(`${product.name} добавлен в корзину!`);
+    //alert(`${product.name} добавлен в корзину!`);
   };
+
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);

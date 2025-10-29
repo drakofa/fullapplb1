@@ -17,20 +17,20 @@ function Header() {
           <nav className="hidden md:block">
             <ul className="flex space-x-8">
               <li>
-                <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium">
+                {/* <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium">
                   Главная
-                </Link>
+                </Link> */}
               </li>
               <li>
                 <Link to="/catalog" className="text-gray-700 hover:text-blue-600 font-medium">
                   Каталог
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/cart" className="text-gray-700 hover:text-blue-600 font-medium">
                   Корзина
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </nav>
 
