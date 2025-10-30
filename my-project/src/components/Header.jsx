@@ -49,21 +49,17 @@ function Header() {
         {/* Мобильная навигация */}
         <nav className="md:hidden mt-4">
           <ul className="flex justify-around">
-            <li>
+            {/* <li>
               <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium">
                 Главная
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/catalog" className="text-gray-700 hover:text-blue-600 font-medium">
                 Каталог
               </Link>
             </li>
-            <li>
-              <Link to="/cart" className="text-gray-700 hover:text-blue-600 font-medium">
-                Корзина
-              </Link>
-            </li>
+            
           </ul>
         </nav>
       </div>

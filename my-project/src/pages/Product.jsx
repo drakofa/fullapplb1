@@ -43,7 +43,7 @@ function Product() {
   
   const handleAddToCart = () => {
     addToCart(product, quantity);
-    alert(`${product.name} (${quantity} шт.) добавлен в корзину!`);
+    // alert(`${product.name} (${quantity} шт.) добавлен в корзину!`);
   };
 
   const handleBuyNow = () => {

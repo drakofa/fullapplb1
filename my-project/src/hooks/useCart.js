@@ -12,10 +12,10 @@ export const useCart = () => {
     if (savedCart) {
       try {
         const parsedCart = JSON.parse(savedCart);
-        console.log('✅ Корзина загружена:', parsedCart);
+        console.log(' Корзина загружена:', parsedCart);
         setCart(parsedCart);
       } catch (error) {
-        console.error('❌ Ошибка парсинга корзины:', error);
+        console.error(' Ошибка парсинга корзины:', error);
         localStorage.removeItem('cart');
       }
     } else {
@@ -25,16 +25,16 @@ export const useCart = () => {
 
   // Сохранение корзины в localStorage при изменении
   useEffect(() => {
-    console.log('💾 Сохранение корзины в localStorage:', cart);
+    console.log(' Сохранение корзины в localStorage:', cart);
     localStorage.setItem('cart', JSON.stringify(cart));
     
     // Проверим, что сохранилось
     const checkStorage = localStorage.getItem('cart');
-    console.log('🔍 Проверка сохранения:', checkStorage);
+    console.log(' Проверка сохранения:', checkStorage);
   }, [cart]);
 
   const addToCart = (product, quantity = 1) => {
-    console.log('🛒 Добавление в корзину:', product, 'количество:', quantity);
+    console.log(' Добавление в корзину:', product, 'количество:', quantity);
     
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.id === product.id);
@@ -45,11 +45,11 @@ export const useCart = () => {
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
-        console.log('📈 Обновлен существующий товар. Новая корзина:', newCart);
+        console.log(' Обновлен существующий товар. Новая корзина:', newCart);
         return newCart;
       } else {
         const newCart = [...prevCart, { ...product, quantity }];
-        console.log('🆕 Добавлен новый товар. Новая корзина:', newCart);
+        console.log(' Добавлен новый товар. Новая корзина:', newCart);
         return newCart;
       }
     });

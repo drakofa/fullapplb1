@@ -4,15 +4,15 @@ import { products } from '../data/products';
 const Breadcrumbs = () => {
   const location = useLocation();
   
-  // Используем useMatch для определения параметров маршрута
+  
   const productMatch = useMatch('/product/:id');
   const id = productMatch?.params.id;
   
-  // Получаем параметры из URL
+  
   const searchParams = new URLSearchParams(location.search);
   const categoryFromUrl = searchParams.get('category');
   
-  // Находим продукт если есть ID
+  
   const currentProduct = id ? products.find(p => p.id === parseInt(id)) : null;
 
   console.log('=== BREADCRUMBS DEBUG ===');
@@ -31,7 +31,7 @@ const Breadcrumbs = () => {
     return categoryNames[category] || category;
   };
 
-  // Определяем текущую категорию
+  
   let currentCategory = null;
   
   if (currentProduct) {
